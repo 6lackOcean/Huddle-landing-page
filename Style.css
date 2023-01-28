@@ -175,6 +175,7 @@ h6 {
   font-family: var(--ff-font-text);
   font-weight: var(--fw-regular);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .content_button:hover{
@@ -200,32 +201,45 @@ h6 {
 
 .footer_icons > *:hover{
   transition: all 0.3s ease-out 0s;
-  transform: scale(150%);
+  transform: scale(1.5);
 }
 
 .popup {
-  display: none;
-}
-
-.popup [data-visible]{
-  display:block;
-  background-color: azure;
-  position: fixed;
-}
-
-
-.opened{
-  display:block;
-  background-color: var(--c-softmagenta);
-  border-radius: 10rem;
-  padding: 2rem 5rem;
-  color: whitesmoke;
-  font-size: var(--fs-h1);
-  font-weight: var(--fw-bold);
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
   position: absolute;
-  top: 50%;
+  z-index: 1;
+  top: 150%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: -80px;
+}
+
+.popup::after{
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.popup[data-visible]{
+  visibility: visible;
+  display: inline-block;
+  position: absolute;
+  animation: fadeIn 1s;
 }
 
 
